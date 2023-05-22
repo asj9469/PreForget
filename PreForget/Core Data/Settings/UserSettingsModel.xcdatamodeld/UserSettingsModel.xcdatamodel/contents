@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="UserSettings" representedClassName=".UserSettings" syncable="YES">
+        <attribute name="customColor" optional="YES" attributeType="Binary" valueTransformerName="SerializableColorTransformer" customClassName="Serializable Color"/>
+    </entity>
+</model>

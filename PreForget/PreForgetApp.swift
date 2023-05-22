@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct PreForgetApp: App {
-    let persistenceController = PersistenceController.shared
-
+    
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    let persistanceController = TaskProvider.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            EmptyView().frame(width: 0, height: 0)
         }
     }
 }

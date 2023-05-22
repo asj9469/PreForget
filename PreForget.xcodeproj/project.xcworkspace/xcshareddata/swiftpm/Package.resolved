@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "launchatlogin-modern",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/LaunchAtLogin-Modern",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9c41991631605c8ccfe0347bbcb5c659169f2ec5"
+      }
+    },
+    {
+      "identity" : "nvmcolor_swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NVMNovem/NVMColor_swift",
+      "state" : {
+        "revision" : "a346a6145a09c8c7811c8dc4a5161c56bff6ee87",
+        "version" : "1.2.3"
+      }
+    }
+  ],
+  "version" : 2
+}
