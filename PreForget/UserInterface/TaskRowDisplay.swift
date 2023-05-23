@@ -43,10 +43,12 @@ struct TaskRowView: View {
                     viewContext.delete(task)
                     try? viewContext.save()
                 } label:{
-                    Image(systemName: task.urgency == true ? "exclamationmark.square.fill" : "square")
-                        .foregroundColor(Color(hex:customColor) ?? Color.pink)
+                    Image(systemName: task.urgency == true ? "circle.circle" : "circle")
+                        .font(.body)
+                        .imageScale(.large)
+                        .foregroundColor(Color(hex:customColor) ?? Color(hex:"406cb4"))
                 }
-                .padding(.leading, 10)
+                .padding(.leading, 8)
                 .padding(.horizontal, 5.0)
                 .padding(.top, 3)
                 .buttonStyle(BorderlessButtonStyle())
@@ -112,7 +114,7 @@ struct TaskRowView: View {
 
 struct NoTaskView: View {
     
-    let emptyPhrases = ["It's a bit too empty here...", "This is a bit empty for the app's purpose don't you think?", "You should definitely give me some work to do 👀", "Don't name your tasks too long... It's so hard to read it all out when I'm reminding you of it 😭", "wow you must be very free... lucky..."]
+    let emptyPhrases = ["It's a bit too empty here...", "This is a bit empty for the app's purpose don't you think?", "You should definitely give me some work to do 👀", "Don't name your tasks too long... \nIt won't fully show on the notification", "wow you must be free... lucky..."]
     let randomEmptyPhrase: String
     
     init(){

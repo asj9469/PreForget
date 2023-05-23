@@ -23,15 +23,9 @@ class StatusBarController{
         self.popover = popover
         statusBar = .init()
         statusItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
-//
-//        let image = NSImage(systemSymbolName: "heart.fill", accessibilityDescription: "")!
-//        image.isTemplate = true
-//        let coloredImage = image.tint(color: .systemPink)
-//        let coloredImage = image.tint(color: color)
         
         if let button = statusItem.button{
-//            button.image = coloredImage
-            button.image = NSImage(systemSymbolName: "checklist", accessibilityDescription: "")
+            button.image = NSImage(systemSymbolName: "checkmark.circle.fill", accessibilityDescription: "")
             button.action = #selector(self.clickManager(sender:))
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.target = self
@@ -41,19 +35,11 @@ class StatusBarController{
 
     @objc func clickManager(sender: NSStatusItem) {
 
-//        let image = NSImage(systemSymbolName: "heart.fill", accessibilityDescription: "")!
-//        image.isTemplate = true
-//        let coloredImage = image.tint(color: .systemPink)
         let event = NSApp.currentEvent!
         
         if event.type == NSEvent.EventType.rightMouseUp {
             // Right button click
             let statusBarMenu = NSMenu()
-            
-//            let settings = (NSMenuItem(title:"Settings 🤪", action:#selector(self.settings(sender:)),keyEquivalent: ""))
-//            settings.target = self
-//            statusBarMenu.addItem(settings)
-//            statusBarMenu.addItem(.separator())
             
             let about = (NSMenuItem(title:"About this app", action:#selector(self.about(sender:)),keyEquivalent: "a"))
             about.target = self

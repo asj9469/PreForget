@@ -31,10 +31,10 @@ struct settingsView: View{
     @State var customImageItem: PhotosPickerItem?
     @State var imageData: Data = NSImage(imageLiteralResourceName: "cautionSign").tiffRepresentation!
     
-    @State var square1: Bool = true
-    @State var square2: Bool = false
+    @State var circle1: Bool = true
+    @State var circle2: Bool = false
     @State var text1: String = "Wassup I'm a preview 😎"
-    @State var text2: String = "btw you can edit these 😚"
+    @State var text2: String = "btw you can edit these"
     
     var body: some View{
         VStack {
@@ -66,12 +66,14 @@ struct settingsView: View{
                 
                 HStack{
                     Button{
-                        square1.toggle()
+                        circle1.toggle()
                     } label:{
-                        Image(systemName: square1 ? "exclamationmark.square.fill":"square")
+                        Image(systemName: circle1 ? "circle.circle":"circle")
+                            .font(.body)
+                            .imageScale(.large)
                             .foregroundColor(color)
                     }
-                    .padding(.leading, 50)
+                    .padding(.leading, 45)
                     .padding(.horizontal, 5.0)
                     .padding(.top, 3)
                     .buttonStyle(BorderlessButtonStyle())
@@ -85,12 +87,14 @@ struct settingsView: View{
                 
                 HStack{
                     Button{
-                        square2.toggle()
+                        circle2.toggle()
                     } label:{
-                        Image(systemName: square2 ? "exclamationmark.square.fill":"square")
+                        Image(systemName: circle2 ? "circle.circle":"circle")
+                            .font(.body)
+                            .imageScale(.large)
                             .foregroundColor(color)
                     }
-                    .padding(.leading, 50)
+                    .padding(.leading, 45)
                     .padding(.horizontal, 5.0)
                     .padding(.top, 3)
                     .buttonStyle(BorderlessButtonStyle())
@@ -264,8 +268,8 @@ struct settingsView: View{
                         LaunchAtLogin.isEnabled = false
                     }
                     color = Color(hex:"406cb4")!
-                    square1 = true
-                    square2 = false
+                    circle1 = true
+                    circle2 = false
                     text1 = "Mission complete :D"
                     text2 = "Successfully restored 🫡"
                     

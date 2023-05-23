@@ -34,7 +34,7 @@ struct detailsDisplayView: View {
                         })
                     }
                 .padding(.top, 10)
-                .padding(.leading, 10)
+                .padding(.leading, 6)
                 .padding(.trailing, 10)
                 .padding(.vertical,6)
                 .frame(height: 60)
@@ -45,11 +45,10 @@ struct detailsDisplayView: View {
             
             HStack(alignment: VerticalAlignment.top){
                 Text("Details: ")
-//                    .padding(.bottom, 26.0)
                     .padding(.leading, 15)
                 if(task.details.isEmpty){
                     ScrollView{
-                        Text("no description for this task (you can edit this by clicking or right clicking the task)")
+                        Text("(no description)")
                             .lineLimit(nil)
                             .overlay(GeometryReader { geo in
                                 Color.clear.onAppear {
@@ -94,8 +93,8 @@ struct detailsDisplayView: View {
             
             HStack{
                 Spacer()
-                Label("Urgent", systemImage: task.urgency == true ? "exclamationmark.square.fill" : "square")
-                Label("Reminder", systemImage: task.reminder == true ? "exclamationmark.square.fill" : "square")
+                Label("Urgent", systemImage: task.urgency == true ? "square.fill" : "square")
+                Label("Reminder", systemImage: task.reminder == true ? "square.fill" : "square")
                 Spacer()
             }
             .padding(.bottom, -1.0)
@@ -153,7 +152,7 @@ struct detailsEditView: View{
                     .padding(.leading, 15)
                 if(task.details.isEmpty){
                     ScrollView{
-                        TextField("no description for this task (you can edit this by clicking or right clicking the task)", text: $vm.task.details, axis: .vertical)
+                        TextField("(no description)", text: $vm.task.details, axis: .vertical)
                             .padding(.top,-3)
                             .lineLimit(4...10)
                             .overlay(GeometryReader { geo in
@@ -259,18 +258,9 @@ struct detailsEditView: View{
         }
         .frame(width: 260, height: 245)
     }
-    
 }
 
 func hashString(obj: AnyObject) -> String {
     return String(UInt(bitPattern: ObjectIdentifier(obj)))
 }
 
-//
-//struct detailsView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        detailsDisplayView()
-//
-//        detailsEditView()
-//    }
-//}

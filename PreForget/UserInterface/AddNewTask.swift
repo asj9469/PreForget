@@ -123,7 +123,7 @@ struct titleView: View{
 
 //MARK: Details View
 struct detailsView: View{
-    let detailPhrases = ["Wanna give me some details?", "Ok, so what is this exactly about", "Any details to remember?", "mhm I'm listening","Are there any specifics?", "Anything important about this task?"]
+    let detailPhrases = ["Wanna give me some details?", "What is this exactly about?", "Any details to remember?", "mhm I'm listening","Are there any specifics?", "Anything important about this task?"]
     let randomDetailPhrase: String
     
     @Binding var details: String
