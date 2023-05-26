@@ -24,7 +24,7 @@ Add New Tasks | Manage Tasks
 
 Settings & Notifications|
 :-------------:
-<img src="readme_source/notif_settings_cropped.gif" width="500px">
+<img src="readme_source/notif_settings_cropped.gif">
 
 ## Screenshots
 ### Empty List Messages (there are more than 2)
