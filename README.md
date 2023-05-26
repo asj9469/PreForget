@@ -1,5 +1,5 @@
-# PreForget
-## *I haven't officially signed nor released the app on the App Store yet (I will be doing that within this week)*
+# PreForget: Before You Forget
+## *Update (May 26th): Preparing for App Store Release*
 
 <img src="readme_source/banner.png">
 
@@ -7,19 +7,35 @@ PreForget is an interactive macOS menu bar app that was designed to help users e
 
 The user friendly UI/UX helps keep away the boredom while conditioning the user to feel positive emotions when doing something that is traditionally "boring."
 
+# Table of Contents
+- [Demo](#demo)
+- [Screenshots](#screenshots)
+  - [Empty List Messages](#empty-list-messages)
+  - [Live Response to User Input](#live-response-to-user-input)
+- [Features](#features)
+- [How to Run the Project File (for now)](#how-to-run-the-project-file-for-now)
+- [Future Plans](#future-plans)
+
 ## Demo
 
 Add New Tasks | Manage Tasks
 :--------:|:--------------------:
-<img src="readme_source/adding tasks_cropped.gif">  |<img src="readme_source/edit_delete tasks_cropped.gif">
+<img src="readme_source/adding tasks_cropped.gif" >|<img src="readme_source/edit_delete tasks_cropped.gif">
 
-<p align="center">
-
-Change Settings & Test Out Reminder Notifs|
+Settings & Notifications|
 :-------------:
 <img src="readme_source/notif_settings_cropped.gif" width="500px">
 
-</p>
+## Screenshots
+### Empty List Messages (there are more than 2)
+Ex 1| Ex 2
+:--------:|:----------------:
+<img src="readme_source/empty list text 1.png" > | <img src="readme_source/empty list text 2.png" >
+
+### Live Response to User Input (there are more than 1)
+Secret Message Example|
+:-------------:
+<img src="readme_source/secret message ex.png" >
 
 ## Features
 - random "fun" messages when there are no tasks
@@ -34,7 +50,7 @@ Change Settings & Test Out Reminder Notifs|
 - run the app
 
 ## Future Plans
-- app logo design
+- ~~app logo design~~
 - publish the app on the App Store
 - create a demo presentation video
 - implement AI to generate new messages

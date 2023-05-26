@@ -155,7 +155,7 @@ struct settingsView: View{
                         content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "notifSound.wav"))
                         content.categoryIdentifier = "reminderNotif"
                         
-                        let launchApp = UNNotificationAction(identifier: "launchApp", title: "View in app", options: [.foreground])
+//                        let launchApp = UNNotificationAction(identifier: "launchApp", title: "View in app", options: [.foreground])
                         
 //                        let fileUrl = URL(fileURLWithPath: UserDefaults.standard.string(forKey: "notificationIcon")!)
                         if let attachment = UNNotificationAttachment.create(identifier: "img.jpeg", imageData: imageData as Data, options: nil)
@@ -163,7 +163,7 @@ struct settingsView: View{
                             content.attachments = [attachment]
                         }
                         
-                        let category = UNNotificationCategory(identifier: "reminderNotif", actions: [launchApp], intentIdentifiers: [], options: [])
+                        let category = UNNotificationCategory(identifier: "reminderNotif", actions: [], intentIdentifiers: [], options: [])
 
                         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                         
@@ -254,7 +254,6 @@ struct settingsView: View{
                         NSColorPanel.shared.orderOut(nil)
                         }
                     NSApplication.shared.keyWindow?.close()
-                    
                     
                 }, label: {
                     Text("Cancel")

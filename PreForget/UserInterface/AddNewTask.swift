@@ -99,6 +99,8 @@ struct titleView: View{
                     taskName = taskName
                     if(taskName.localizedCaseInsensitiveContains("nothin") || taskName.localizedCaseInsensitiveContains("nothing")){
                         redMessage = "LOLLL wdym nothing 🙄"
+                    }else if (taskName.localizedCaseInsensitiveContains("no")){
+                        redMessage = "nahhhh come onnnnn"
                     }else if(taskName.localizedCaseInsensitiveContains("sleep")){
                         redMessage = "...ok valid"
                     }else if(taskName.localizedCaseInsensitiveContains("hello") || taskName.localizedCaseInsensitiveContains("hi")){

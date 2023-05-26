@@ -28,7 +28,6 @@ class AppDelegate:  NSObject, NSApplicationDelegate {
         
         Self.popover.behavior = .transient
     }
-    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate{

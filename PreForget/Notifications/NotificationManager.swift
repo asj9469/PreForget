@@ -62,7 +62,7 @@ class NotificationManager: ObservableObject{
         content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "notifSound.wav"))
         content.categoryIdentifier = "reminderNotif"
         
-        let launchApp = UNNotificationAction(identifier: "launchApp", title: "View in app", options: [.foreground])
+//        let launchApp = UNNotificationAction(identifier: "launchApp", title: "View in app", options: [.foreground])
 //        let disableTaskNotif = UNNotificationAction(identifier: "disableTaskNotif", title: "Turn off reminder for this task", options: [.foreground])
         
         if let attachment = UNNotificationAttachment.create(identifier: "img.jpeg", imageData: imageData as Data, options: nil)
@@ -70,7 +70,7 @@ class NotificationManager: ObservableObject{
             content.attachments = [attachment]
         }
         
-        let category = UNNotificationCategory(identifier: "reminderNotif", actions: [launchApp], intentIdentifiers: [], options: [])
+        let category = UNNotificationCategory(identifier: "reminderNotif", actions: [], intentIdentifiers: [], options: [])
 
         let triggerTime = Calendar.current.dateComponents([.year, .day, .hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerTime, repeats: false)
