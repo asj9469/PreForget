@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="22G436" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CompletedTask" representedClassName=".CompletedTask" syncable="YES">
+        <attribute name="completedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="completedDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="details_history" optional="YES" attributeType="String"/>
+        <attribute name="dueDate_history" optional="YES" attributeType="Date" defaultDateTimeInterval="706133640" usesScalarValueType="NO"/>
+        <attribute name="reminder_history" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminderDate_history" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskName_history" optional="YES" attributeType="String" defaultValueString="Untitled"/>
+        <attribute name="urgency_history" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+</model>

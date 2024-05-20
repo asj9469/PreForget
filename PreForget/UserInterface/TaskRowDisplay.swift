@@ -36,10 +36,22 @@ struct TaskRowView: View {
         ZStack(alignment: .trailing) {
             HStack{
                 Button{
-    //                viewContext.delete(task)
                     withAnimation(.spring().delay(0.25)) {
                         self.shouldShowCompleteSuccess.toggle()
                     }
+                    
+                    // migrate the task information to a history object
+                    let completedTask = CompletedTask(context: viewContext)
+                    
+                    completedTask.taskName_history = task.taskName
+                    completedTask.dueDate_history = task.dueDate
+                    completedTask.urgency_history = task.urgency
+                    completedTask.reminder_history = task.reminder
+                    completedTask.reminderDate_history = task.reminderDate
+                    completedTask.completedDate = Date() // setting completion date to current date
+                    completedTask.completedDateTime = Date()
+                    try? viewContext.save()
+                    
                     viewContext.delete(task)
                     try? viewContext.save()
                 } label:{
