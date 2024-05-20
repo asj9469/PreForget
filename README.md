@@ -1,5 +1,7 @@
-# PreForget: Before You Forget
-## *Update (May 26th): Preparing for App Store Release*
+# PreForget: Before You Forget [![image](	https://img.shields.io/badge/mac%20app%20store-000000?style=for-the-badge&logo=apple&logoColor=white)](https://apps.apple.com/us/app/preforget-menu-bar-to-do-app/id6449631717) [![image](	https://img.shields.io/badge/official%20website-ffffff?style=for-the-badge&logo=&logoColor=000)](https://preforget.vercel.app)
+
+
+## *Update (June 7th): Now Downloadable on the Mac App Store*
 
 <img src="readme_source/banner.png">
 
