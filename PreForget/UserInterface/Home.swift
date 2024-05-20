@@ -7,7 +7,7 @@
 
 import SwiftUI
 import NVMColor
-
+import AppKit
 import UserNotifications
 
 //mostly deals with functions
@@ -34,12 +34,33 @@ struct Home: View {
     
     @State var newTask: Task?
     @State var taskToEdit: Task?
+    @State private var isMenuOpen = false
+
 
     var body: some View {
         ZStack{
             VStack{
                 // MARK: Title
                 ZStack(alignment: .trailing){
+                    HStack{
+                        Button {
+                            let aboutView = aboutView()
+                            let aboutWindow = AboutWindowController(rootView: aboutView)
+                            aboutWindow.window?.title = "About"
+                            aboutWindow.showWindow(nil)
+                            
+                            NSApp.setActivationPolicy(.regular)
+                            NSApp.activate(ignoringOtherApps: true)
+                            aboutWindow.window?.orderFrontRegardless()
+                            
+                        } label: {
+                            Image(systemName: "info.circle.fill")
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                        .padding(.top, 12)
+                        .padding(.trailing, 225)
+                    }
+                    
                     HStack{
                         Spacer()
                         Text("Before You Forget...")
@@ -49,31 +70,49 @@ struct Home: View {
                         Spacer()
                     }
                     HStack{
-//                        Button {
-//                            showPendingNotifs.toggle()
-//                        }label: {
-//                            Image(systemName: "bell.fill")
-//                        }
-//                        .buttonStyle(BorderlessButtonStyle())
-//                        .buttonStyle(PlainButtonStyle())
-//                        .padding(.top, 9)
+        //                        Button {
+        //                            showPendingNotifs.toggle()
+        //                        }label: {
+        //                            Image(systemName: "bell.fill")
+        //                        }
+        //                        .buttonStyle(BorderlessButtonStyle())
+        //                        .buttonStyle(PlainButtonStyle())
+        //                        .padding(.top, 9)
                         
-                        Button {
-                            let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
-                            let settingsWindow = SettingsWindowController(rootView: settingsView)
-                            settingsWindow.window?.title = "Settings";
-                            settingsWindow.showWindow(nil)
+                            Menu {
+                                Button {
+                                    isMenuOpen.toggle()
+                                    let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
+                                    let settingsWindow = SettingsWindowController(rootView: settingsView)
+                                    settingsWindow.window?.title = "Settings";
+                                    settingsWindow.showWindow(nil)
+                                    
+                                    NSApp.setActivationPolicy(.regular)
+                                    NSApp.activate(ignoringOtherApps: true)
+                                    settingsWindow.window?.orderFrontRegardless()
+                                    
+                                } label:{
+                                    Text("Settings")
+                                }
+                                .keyboardShortcut(",")
+                                
+                                Button(action: {
+                                    NSApplication.shared.terminate(nil)
+                                }) {
+                                    Text("Quit")
+                                }
+                                .keyboardShortcut("q")
+                                
+                            } label: {
+                                Image(systemName: "gearshape.fill")
+                            }
+                            .menuStyle(BorderlessButtonMenuStyle())
+                            .buttonStyle(BorderlessButtonStyle())
+                            .buttonStyle(PlainButtonStyle())
+                            .buttonStyle(.plain)
+                            .padding(.top, 9)
+                            .opacity(0.6)
                             
-                            NSApp.setActivationPolicy(.regular)
-                            NSApp.activate(ignoringOtherApps: true)
-                            settingsWindow.window?.orderFrontRegardless()
-                        } label: {
-                            Image(systemName: "gearshape.fill")
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                        .buttonStyle(PlainButtonStyle())
-                        .buttonStyle(.plain)
-                        .padding(.top, 9)
                     }
                     
                     .padding(.trailing, 10)
@@ -119,9 +158,9 @@ struct Home: View {
                 .disabled(showAddField)
             }
         }
-//        .sheet(isPresented: $showPendingNotifs, content: {
-//            NotificationListView(showPendingNotifs: $showPendingNotifs)
-//        })
+        //        .sheet(isPresented: $showPendingNotifs, content: {
+        //            NotificationListView(showPendingNotifs: $showPendingNotifs)
+        //        })
         .sheet(isPresented: $showAddField){
             addNewView(vm: .init(provider: TaskProvider.shared, task: newTask), showAddField: $showAddField, imageData: $imageData){
                 withAnimation(.spring().delay(0.25)) {
@@ -134,9 +173,9 @@ struct Home: View {
         }, content: { task in
             
             TabView{
-//
-//                detailsDisplayView()
-//                detailsEditView()
+                //
+                //                detailsDisplayView()
+                //                detailsEditView()
                 detailsDisplayView(task: task)
                     .tabItem{
                         Text("Details")
@@ -148,7 +187,7 @@ struct Home: View {
                     }
             }
             .padding(.vertical, 10)
-//            .frame(width: 300, height: 250)
+            //            .frame(width: 300, height: 250)
             .frame(width: 290, height: 290)
             
         })
@@ -157,9 +196,9 @@ struct Home: View {
                 AddedPopoverView()
                     .transition(.scale.combined(with: .opacity))
                     .onAppear {
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                           withAnimation(.spring().delay(1)) {
-                               self.shouldShowAddSuccess.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.spring().delay(1)) {
+                                self.shouldShowAddSuccess.toggle()
                             }
                         }
                     }
@@ -168,10 +207,10 @@ struct Home: View {
                 CompletedPopoverView()
                     .transition(.scale.combined(with: .opacity))
                     .onAppear {
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                           withAnimation(.spring().delay(1)) {
-                               self.shouldShowCompleteSuccess.toggle()
-//                               try? viewContext.save()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.spring().delay(1)) {
+                                self.shouldShowCompleteSuccess.toggle()
+                                //                               try? viewContext.save()
                             }
                         }
                     }
@@ -180,9 +219,9 @@ struct Home: View {
                 NotifOnPopoverView()
                     .transition(.scale.combined(with: .opacity))
                     .onAppear {
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                           withAnimation(.spring().delay(1)) {
-                               self.shouldShowNotifSuccess.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.spring().delay(1)) {
+                                self.shouldShowNotifSuccess.toggle()
                             }
                         }
                     }
@@ -191,9 +230,9 @@ struct Home: View {
                 NotifOffPopoverView()
                     .transition(.scale.combined(with: .opacity))
                     .onAppear {
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                           withAnimation(.spring().delay(1)) {
-                               self.shouldHideNotifSuccess.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.spring().delay(1)) {
+                                self.shouldHideNotifSuccess.toggle()
                             }
                         }
                     }
@@ -202,7 +241,6 @@ struct Home: View {
         }
         
     }
-
     func deleteTask(at offsets: IndexSet){
         for offset in offsets{
             let task = tasks[offset]
@@ -211,5 +249,14 @@ struct Home: View {
         try? viewContext.save()
     }
     
-}
+    private func openSettings(_ sender: Any?) {
+        let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
+        let settingsWindow = SettingsWindowController(rootView: settingsView)
+        settingsWindow.window?.title = "Settings";
+        settingsWindow.showWindow(nil)
 
+        NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+        settingsWindow.window?.orderFrontRegardless()
+    }
+}
