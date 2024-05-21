@@ -46,7 +46,7 @@ Secret Message Example|
 - customizable UI colors and notification banner image
 - two-finger swipe to delete task
 
-## How to Run the Project File (for now)
+## How to Run the Project File (locally)
 - clone this repository on your MacBook
 - open the cloned files via XCode
 - run the app
