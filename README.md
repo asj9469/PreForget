@@ -46,15 +46,16 @@ Secret Message Example|
 - customizable UI colors and notification banner image
 - two-finger swipe to delete task
 
-## How to Run the Project File (for now)
+## How to Run the Project File (locally)
 - clone this repository on your MacBook
 - open the cloned files via XCode
 - run the app
-
+  
 ## Future Plans
 - ~~app logo design~~
-- publish the app on the App Store
+- ~~publish the app on the App Store~~
 - create a demo presentation video
 - implement AI to generate new messages
 - create a complementary iOS app
 - implement CloudKit for task storage for cross-platform integration
+- create history window where users can access completed tasks (in progress)
