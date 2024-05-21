@@ -10,25 +10,25 @@ import CoreData
 
 final class CompletedTask: NSManagedObject, Identifiable{
     
-    @NSManaged var taskName_history: String
-    @NSManaged var details_history: String
-    @NSManaged var dueDate_history: Date
-    @NSManaged var reminderDate_history: Date
-    @NSManaged var urgency_history: Bool
-    @NSManaged var reminder_history: Bool
+    @NSManaged var taskName: String
+    @NSManaged var details: String
+    @NSManaged var dueDate: Date
+    @NSManaged var reminderDate: Date
+    @NSManaged var urgency: Bool
+    @NSManaged var reminder: Bool
     @NSManaged var completedDate: Date
     @NSManaged var completedDateTime: Date
     
     var formattedDate: String{
         let df = DateFormatter()
         df.dateFormat = "mm/dd/yyyy"
-        return df.string(from: dueDate_history)
+        return df.string(from: dueDate)
     }
     
     var formattedReminderDate: String{
         let df = DateFormatter()
         df.dateFormat = "mm/dd/yyyy hh:mm a"
-        return df.string(from: reminderDate_history)
+        return df.string(from: reminderDate)
     }
     
     var formattedCompletedDate: String{
@@ -44,7 +44,7 @@ final class CompletedTask: NSManagedObject, Identifiable{
     }
     
     var isValid: Bool {
-        !taskName_history.isEmpty
+        !taskName.isEmpty
     }
     
 }

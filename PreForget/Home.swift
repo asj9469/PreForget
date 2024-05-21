@@ -25,7 +25,6 @@ struct Home: View {
     @State private var selectedTab = "titleView"
     
     //edit task
-    @State var showDetails: Bool = false
     @State var showPendingNotifs = false
     @State var shouldShowAddSuccess = false
     @State var shouldShowCompleteSuccess = false
@@ -96,6 +95,21 @@ struct Home: View {
                                 }
                                 .keyboardShortcut(",")
                                 
+                                Button {
+                                    isMenuOpen.toggle()
+                                    let historyView = historyView()
+                                    let historyWindow = HistoryWindowController(rootView: historyView)
+                                    historyWindow.window?.title = "History"
+                                    historyWindow.showWindow(nil)
+                                    
+                                    NSApp.setActivationPolicy(.regular)
+                                    NSApp.activate(ignoringOtherApps: true)
+                                    historyWindow.window?.orderFrontRegardless()
+                                } label : {
+                                    Text("History")
+                                }
+                                .keyboardShortcut("h")
+                                
                                 Button(action: {
                                     NSApplication.shared.terminate(nil)
                                 }) {
@@ -123,7 +137,7 @@ struct Home: View {
                     List{
                         ForEach(tasks) { task in
                             
-                            TaskRowView(task: task, showDetails: $showDetails, taskToEdit: $taskToEdit, customColor: $customColor, shouldShowCompleteSuccess: $shouldShowCompleteSuccess, shouldShowNotifSuccess: $shouldShowNotifSuccess, shouldHideNotifSuccess: $shouldHideNotifSuccess, imageData: $imageData)
+                            TaskRowView(task: task, taskToEdit: $taskToEdit, customColor: $customColor, shouldShowCompleteSuccess: $shouldShowCompleteSuccess, shouldShowNotifSuccess: $shouldShowNotifSuccess, shouldHideNotifSuccess: $shouldHideNotifSuccess, imageData: $imageData)
                         }
                         .onDelete(perform: deleteTask)
                         
@@ -158,9 +172,6 @@ struct Home: View {
                 .disabled(showAddField)
             }
         }
-        //        .sheet(isPresented: $showPendingNotifs, content: {
-        //            NotificationListView(showPendingNotifs: $showPendingNotifs)
-        //        })
         .sheet(isPresented: $showAddField){
             addNewView(vm: .init(provider: TaskProvider.shared, task: newTask), showAddField: $showAddField, imageData: $imageData){
                 withAnimation(.spring().delay(0.25)) {
@@ -173,9 +184,6 @@ struct Home: View {
         }, content: { task in
             
             TabView{
-                //
-                //                detailsDisplayView()
-                //                detailsEditView()
                 detailsDisplayView(task: task)
                     .tabItem{
                         Text("Details")
@@ -249,14 +257,14 @@ struct Home: View {
         try? viewContext.save()
     }
     
-    private func openSettings(_ sender: Any?) {
-        let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
-        let settingsWindow = SettingsWindowController(rootView: settingsView)
-        settingsWindow.window?.title = "Settings";
-        settingsWindow.showWindow(nil)
-
-        NSApp.setActivationPolicy(.regular)
-        NSApp.activate(ignoringOtherApps: true)
-        settingsWindow.window?.orderFrontRegardless()
-    }
+//    private func openSettings(_ sender: Any?) {
+//        let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
+//        let settingsWindow = SettingsWindowController(rootView: settingsView)
+//        settingsWindow.window?.title = "Settings";
+//        settingsWindow.showWindow(nil)
+//
+//        NSApp.setActivationPolicy(.regular)
+//        NSApp.activate(ignoringOtherApps: true)
+//        settingsWindow.window?.orderFrontRegardless()
+//    }
 }

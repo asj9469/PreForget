@@ -3,11 +3,11 @@
     <entity name="CompletedTask" representedClassName=".CompletedTask" syncable="YES">
         <attribute name="completedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="completedDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="details_history" optional="YES" attributeType="String"/>
-        <attribute name="dueDate_history" optional="YES" attributeType="Date" defaultDateTimeInterval="706133640" usesScalarValueType="NO"/>
-        <attribute name="reminder_history" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="reminderDate_history" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="taskName_history" optional="YES" attributeType="String" defaultValueString="Untitled"/>
-        <attribute name="urgency_history" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" defaultDateTimeInterval="706133640" usesScalarValueType="NO"/>
+        <attribute name="reminder" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskName" optional="YES" attributeType="String" defaultValueString="Untitled"/>
+        <attribute name="urgency" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
 </model>
