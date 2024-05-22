@@ -40,40 +40,38 @@ struct detailsDisplayView: View {
                 .frame(height: 60)
                 
             }
-            .padding(.bottom, 10)
+            .padding(.top, 30)
+            .padding(.bottom, 20)
             .frame(maxHeight: nameViewContentSize.height)
             
             HStack(alignment: VerticalAlignment.top){
                 Text("Details: ")
                     .padding(.leading, 15)
                 if(task.details.isEmpty){
-                    ScrollView{
-                        Text("(no description)")
-                            .lineLimit(nil)
-                            .overlay(GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    detailsViewContentSize = geo.size
-                                }
-                            })
-                        }
+                    Text("(no description)")
+                        .lineLimit(nil)
+                        .overlay(GeometryReader { geo in
+                            Color.clear.onAppear {
+                                detailsViewContentSize = geo.size
+                            }
+                        })
                     .padding(.leading, 4.0)
+                    
                 }else{
                     ScrollView{
                         Text(task.details)
-                            .lineLimit(nil)
                             .overlay(GeometryReader { geo in
                                 Color.clear.onAppear {
                                     detailsViewContentSize = geo.size
                                 }
                             })
                     }
-                    
+                    .frame(maxHeight: detailsViewContentSize.height)
                     .padding(.leading, 4.0)
                 }
             }
-            .padding(.top, -10.0)
-//            .frame(maxHeight: 60)
-            .frame(maxHeight: detailsViewContentSize.height)
+            .padding(.top, 10)
+            .padding(.bottom, 10)
             
             HStack{
                 Text("Due: ")
@@ -91,13 +89,14 @@ struct detailsDisplayView: View {
                 Text(task.formattedReminderDate)
                     .padding(.bottom,5)
             }
-            
+
             HStack{
                 Spacer()
                 Label("Urgent", systemImage: task.urgency == true ? "square.fill" : "square")
                 Label("Reminder", systemImage: task.reminder == true ? "square.fill" : "square")
                 Spacer()
             }
+            .padding(.top, 10)
             .padding(.bottom, -1.0)
             
             HStack{
@@ -112,8 +111,7 @@ struct detailsDisplayView: View {
                 Spacer()
             }
         }
-//        .frame(width: 250, height: 180)
-        .frame(width: 250, height: 245)
+        .frame(width: 320, height: 320)
     }
     
 }
@@ -166,8 +164,8 @@ struct detailsEditView: View{
                 }else{
                     ScrollView{
                         TextField(task.details, text: $vm.task.details, axis: .vertical)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.top,-3.0)
+                            .frame(minHeight: 30)
                             .overlay(GeometryReader { geo in
                                 Color.clear.onAppear {
                                     detailsViewContentSize = geo.size
@@ -178,7 +176,8 @@ struct detailsEditView: View{
                 
             }
             .padding(.top, -3.0)
-            .frame(maxHeight: detailsViewContentSize.height)
+            .frame(minHeight: 50, maxHeight: max(50, detailsViewContentSize.height))
+            
             HStack{
                 Text("Due: ")
                     .padding(.bottom,5)
@@ -256,7 +255,7 @@ struct detailsEditView: View{
             .padding(.bottom, 2.0)
 
         }
-        .frame(width: 260, height: 245)
+        .frame(width: 320, height: 320)
     }
 }
 

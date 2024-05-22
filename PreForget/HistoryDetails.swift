@@ -49,10 +49,10 @@ struct completedTaskDetailsView: View{
                         })
                     }
                 .padding(.top, 10)
-                .padding(.leading, 31)
+                .padding(.leading, 15)
                 .padding(.trailing, 10)
                 .padding(.vertical,6)
-                .frame(height: 60)
+                .frame(width: 100, height: 60)
                 
             }
             .padding(.bottom, 10)

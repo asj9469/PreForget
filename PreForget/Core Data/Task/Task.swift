@@ -19,7 +19,7 @@ final class Task: NSManagedObject, Identifiable{
     
     var formattedDate: String{
         let df = DateFormatter()
-        df.dateFormat = "MM/dd/YYYY"
+        df.dateFormat = "MM/dd/YYYY hh:mm a"
         return df.string(from: dueDate)
     }
     

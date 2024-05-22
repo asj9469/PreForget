@@ -18,28 +18,43 @@ struct addNewView: View{
     @State var dueDate: Date = Date.now
     @State var reminderDate: Date = Date.now
     @State var urgency: Bool = false
+    @State var reminder: Bool = false
     let successfulAction: () -> Void
+    
+    //title validation message
+    @State var redMessage: String = ""
+    let titlePhrases = ["Don't forget the title!", "Title is required", "We need a title to save the task", "Task name is required", "No task name... what a bold choice"]
+    let randomTitlePhrase: String
+    
+    init(vm: EditTaskViewModel, showAddField: Binding<Bool>, imageData: Binding<Data>, successfulAction: @escaping () -> Void) {
+        self.vm = vm
+        self._showAddField = showAddField
+        self._imageData = imageData
+        self.successfulAction = successfulAction
+        self.randomTitlePhrase = titlePhrases.randomElement()!
+    }
     
     var body: some View{
         TabView(){
             //first task name set page
-            titleView(taskName: $taskName)
+            setTaskView(taskName: $taskName, redMessage: $redMessage, details: $details)
                 .tabItem{
-                    Text("Set Name")
+                    Text("New Task")
                 }
             
             //second details page
-            detailsView(details: $details)
-                .tabItem{
-                    Text("Details")
-                }
-            otherView(urgency: $urgency, dueDate: $dueDate, reminderDate: $reminderDate)
+//            detailsView(details: $details)
+//                .tabItem{
+//                    Text("Details")
+//                }
+            
+            otherView(urgency: $urgency, dueDate: $dueDate, reminderDate: $reminderDate, reminder: $reminder)
                 .tabItem{
                     Text("Other")
                 }
         }
         .padding(.top, 20)
-        .frame(width: 250, height: 180)
+        .frame(width: 300, height: 300)
         
         HStack{
             Button(action: {
@@ -55,6 +70,7 @@ struct addNewView: View{
                 vm.task.taskName = taskName
                 vm.task.details = details
                 vm.task.urgency = urgency
+                vm.task.reminder = reminder
                 vm.task.dueDate = dueDate
                 vm.task.reminderDate = reminderDate
                 
@@ -62,6 +78,8 @@ struct addNewView: View{
                 if vm.task.isValid{
                     try? vm.save()
                     showAddField.toggle()
+                }else{
+                    redMessage = randomTitlePhrase
                 }
                 
             }, label: {
@@ -76,27 +94,47 @@ struct addNewView: View{
     }
 }
 
-//MARK: Title View
-struct titleView: View{
-//    let names = ["my friend", "*custom input*"]
-//    let randomName: String
+//MARK: Title + Details View
+struct setTaskView: View{
+    // title part
     @FocusState private var focusedField: Bool
     @Binding var taskName: String
-//
-//    init(taskName: Binding<String>) {
-//        self.randomName = names.randomElement()!
-//        self._taskName = taskName
-//    }
-    @State private var redMessage: String = ""
+    
+    @Binding var redMessage: String
     @State private var input: Bool = false
+    
+    
+    //detail part
+    let detailPhrases = ["What are some details you want to remember?", "What is this exactly about?", "Any details to remember?","Are there any specifics?", "Anything important about this task?"]
+    let randomDetailPhrase: String
+    
+    @Binding var details: String
+    
+    init(taskName: Binding<String>, redMessage:Binding<String>, details: Binding<String>){
+        self.randomDetailPhrase = detailPhrases.randomElement()!
+        self._taskName = taskName
+        self._redMessage = redMessage
+        self._details = details
+    }
+    
+//    @State private var redMessage: String = ""
+//    @State private var input: Bool = false
+    
+    
     var body: some View{
         VStack{
+            Spacer()
             Text("What's your task?")
-                . padding(.bottom, 5)
+                .padding(.bottom, 5)
+                .padding(.top,10)
             TextField("Come on, don't be shy", text: $taskName, axis: .vertical)
                 .padding(.horizontal)
+                .padding(.bottom, 10)
                 .onChange(of: taskName) { newValue in
                     taskName = taskName
+                    if(taskName.isEmpty){
+                        redMessage = ""
+                    }
                     if(taskName.localizedCaseInsensitiveContains("nothin") || taskName.localizedCaseInsensitiveContains("nothing")){
                         redMessage = "LOLLL wdym nothing 🙄"
                     }else if (taskName.localizedCaseInsensitiveContains("no")){
@@ -112,20 +150,45 @@ struct titleView: View{
                     self.input = true
                 }
             
+            //details part
+            Text(randomDetailPhrase)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 5)
+                .padding(.horizontal)
+            
+            ScrollView{
+                TextField("Add details that you can't afford to forget", text: $details, axis: .vertical)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .lineLimit(4...15)
+                    .onChange(of: details) { newValue in
+                        details = details
+                        
+                        if(details == "nah" || details == "no"){
+                            redMessage = "you sure?"
+                        }else{
+                            redMessage = ""
+                        }
+                        self.input = true
+                    }
+            }
+            
+            
             if input{
                 Text(redMessage)
-                    .font(.caption)
-                    .fontWeight(.light)
+//                    .font(.caption)
+                    .fontWeight(.medium)
                     .foregroundColor(.red)
                     .padding(.top, 1)
+                    .padding(.bottom, 15)
             }
         }
     }
 }
 
-//MARK: Details View
+//MARK: Details View (not used for now)
 struct detailsView: View{
-    let detailPhrases = ["Wanna give me some details?", "What is this exactly about?", "Any details to remember?", "mhm I'm listening","Are there any specifics?", "Anything important about this task?"]
+    let detailPhrases = ["Important details you want to remember?", "What is this exactly about?", "Any details to remember?","Are there any specifics?", "Anything important about this task?"]
     let randomDetailPhrase: String
     
     @Binding var details: String
@@ -175,23 +238,32 @@ struct otherView: View{
     @Binding var urgency: Bool
     @Binding var dueDate: Date
     @Binding var reminderDate: Date
+    @Binding var reminder: Bool
     
     var body: some View{
+        VStack(alignment: .center) {
         VStack(alignment: .trailing){
 //            Toggle("Is this urgent?", isOn: $showUrgency)
 //                .padding(.vertical, 5)
+            HStack{
+                Spacer()
+                Text("Due / Deadline")
+                Spacer()
+            }
+            .padding(.top, -5)
+            
             DatePicker(
-                    "Due",
+                    "",
                     selection: $dueDate,
-                    displayedComponents: [.date]
+                    displayedComponents: [.date, .hourAndMinute]
                 )
-            .padding(.top,5)
+            .padding(.top,-5)
             .padding(.horizontal, 40)
             .padding(.leading, 12)
             
             HStack{
                 Spacer()
-                Text("When should I remind you?")
+                Text("Set Reminder Time")
                 Spacer()
             }
             .padding(.top, 5)
@@ -202,9 +274,18 @@ struct otherView: View{
                 displayedComponents: [.date, .hourAndMinute]
             )
             .padding(.top, -5)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 40)
             .padding(.leading, 12)
+            .padding(.bottom, 10)
+        }
             
+            Toggle(isOn: $reminder){
+                Text("Set reminder")
+            }
+            .padding(.top, 5)
+            .padding(.leading, 11)
+            .toggleStyle(.switch)
+//            .padding(.trailing, 50)
             
             Toggle(isOn: $urgency){
                 Text("Is this urgent?")
@@ -212,7 +293,7 @@ struct otherView: View{
                 .padding(.top, 5)
                 .padding(.leading, 11)
                 .toggleStyle(.switch)
-                .padding(.trailing, 50)
+                .padding(.trailing, 6)
         }
     }
 }

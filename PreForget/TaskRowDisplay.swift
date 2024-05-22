@@ -42,6 +42,7 @@ struct TaskRowView: View {
                     let completedTask = CompletedTask(context: viewContext)
                     
                     completedTask.taskName_c = task.taskName
+                    completedTask.details_c = task.details
                     completedTask.dueDate_c = task.dueDate
                     completedTask.urgency_c = task.urgency
                     completedTask.reminder_c = task.reminder
@@ -134,11 +135,11 @@ struct NoTaskView: View {
         HStack{
             Spacer()
             Text(randomEmptyPhrase)
-                .padding(.top, 12)
-                .font(.callout)
+                .font(.system(size: 14))
                 .multilineTextAlignment(.center)
             Spacer()
         }
-        .padding(.vertical, 40)
+        .padding(.top, 30)
+        
     }
 }

@@ -24,7 +24,7 @@ struct Home: View {
 //    @FetchRequest(sortDescriptors: [
 //        SortDescriptor(\.completedDateTime, order: .reverse)]) var completedTasks: FetchedResults<CompletedTask>
     
-    @AppStorage("customColor") var customColor: String = "406cb4"
+    @AppStorage("customColor") var customColor: String = "4280dc"
     @AppStorage("imageData") var imageData: Data = NSImage(imageLiteralResourceName: "cautionSign").tiffRepresentation!
     @State var showAddField: Bool = false
     @State private var selectedTab = "titleView"
@@ -127,6 +127,7 @@ struct Home: View {
                     }
                     .padding(.trailing, 10)
                 }
+                .padding(.vertical, 5)
                 
                 // MARK: Task list
                 VStack(alignment: .leading){
@@ -138,7 +139,9 @@ struct Home: View {
                         .onDelete(perform: deleteTask)
                         
                         if(self.tasks.isEmpty){
+                            Spacer()
                             NoTaskView()
+                            Spacer()
                         }
                     }
                 }
@@ -151,8 +154,8 @@ struct Home: View {
                     Text("+ ADD NEW TASK")
                         .font(.callout)
                         .fontWeight(.bold)
-                        .padding(.vertical, 4.0)
-                        .frame(maxWidth: 200)
+                        .padding(.vertical, 2)
+                        .frame(maxWidth: 200, maxHeight: 31)
                         .contentShape(Rectangle())
                         .background(
                             ZStack{
