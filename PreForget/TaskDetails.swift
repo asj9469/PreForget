@@ -168,7 +168,6 @@ struct detailsEditView: View{
                         TextField(task.details, text: $vm.task.details, axis: .vertical)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.top,-3.0)
-                            .lineLimit(4...10)
                             .overlay(GeometryReader { geo in
                                 Color.clear.onAppear {
                                     detailsViewContentSize = geo.size
