@@ -35,28 +35,20 @@ struct completedTaskDetailsView: View{
         VStack(alignment: .leading){
             HStack(alignment: VerticalAlignment.top){
                 Text("Name: ")
-                    .padding(.top, 20.0)
                     .padding(.leading, 15)
                 
-                ScrollView{
-                    Text(task.taskName_c)
-                        .lineLimit(nil)
-                        .padding(.top, 4.0)
-                        .overlay(GeometryReader { geo in
-                            Color.clear.onAppear {
-                                nameViewContentSize = geo.size
-                            }
-                        })
-                    }
-                .padding(.top, 10)
-                .padding(.leading, 15)
-                .padding(.trailing, 10)
-                .padding(.vertical,6)
-                .frame(width: 100, height: 60)
-                
+                Text(task.taskName_c)
+                    .lineLimit(nil)
+                    .padding(.leading, 27)
+                    .padding(.top, 5.0)
+                    .overlay(GeometryReader { geo in
+                        Color.clear.onAppear {
+                            nameViewContentSize = geo.size
+                        }
+                    })
             }
             .padding(.bottom, 10)
-            .frame(maxHeight: nameViewContentSize.height)
+            .frame(minWidth: 100, maxHeight: max(100, nameViewContentSize.height))
             
             HStack(alignment: VerticalAlignment.top){
                 Text("Details: ")

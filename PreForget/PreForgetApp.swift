@@ -12,7 +12,6 @@ struct PreForgetApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = TaskProvider.shared
-    let persistenceController2 = CompletedTaskProvider.shared
     
     var body: some Scene {
 //        Settings {
@@ -20,6 +19,7 @@ struct PreForgetApp: App {
 //        }
         WindowGroup {
              EmptyView().frame(width: 0, height: 0)
+
             
         }
     }

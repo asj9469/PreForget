@@ -81,6 +81,7 @@ struct Home: View {
                                 let settingsWindow = SettingsWindowController(rootView: settingsView)
                                 settingsWindow.window?.title = "Settings";
                                 settingsWindow.showWindow(nil)
+                                settingsWindow.window = nil
                                 
                                 NSApp.setActivationPolicy(.regular)
                                 NSApp.activate(ignoringOtherApps: true)
