@@ -41,11 +41,11 @@ struct TaskRowView: View {
                     // migrate the task information to a history object
                     let completedTask = CompletedTask(context: viewContext)
                     
-                    completedTask.taskName = task.taskName
-                    completedTask.dueDate = task.dueDate
-                    completedTask.urgency = task.urgency
-                    completedTask.reminder = task.reminder
-                    completedTask.reminderDate = task.reminderDate
+                    completedTask.taskName_c = task.taskName
+                    completedTask.dueDate_c = task.dueDate
+                    completedTask.urgency_c = task.urgency
+                    completedTask.reminder_c = task.reminder
+                    completedTask.reminderDate_c = task.reminderDate
                     completedTask.completedDate = Date() // setting completion date to current date
                     completedTask.completedDateTime = Date()
                     try? viewContext.save()
