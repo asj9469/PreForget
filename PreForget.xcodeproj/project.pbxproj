@@ -25,6 +25,10 @@
 		394BC3FC2A19E4E00020B18B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BC3F52A19E4E00020B18B /* Settings.swift */; };
 		394BC3FD2A19E4E00020B18B /* TaskRowDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BC3F62A19E4E00020B18B /* TaskRowDisplay.swift */; };
 		394BC3FE2A19E4E00020B18B /* AddNewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BC3F72A19E4E00020B18B /* AddNewTask.swift */; };
+		3973575C2BFBCB9600DA180C /* HistoryDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3973575B2BFBCB9600DA180C /* HistoryDisplay.swift */; };
+		3973575F2BFBCFA000DA180C /* CompletedTaskProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3973575E2BFBCFA000DA180C /* CompletedTaskProvider.swift */; };
+		397357632BFBCFD900DA180C /* CompletedTaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397357622BFBCFD900DA180C /* CompletedTaskEntity.swift */; };
+		397357682BFC349A00DA180C /* CompletedTaskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397357672BFC349A00DA180C /* CompletedTaskDetails.swift */; };
 		398FE0C32A2051940005596A /* notifSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 39AAF9942A202C96004441F3 /* notifSound.wav */; };
 		39E8E5972A2094E0004AF229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E8E5962A2094E0004AF229 /* Assets.xcassets */; };
 		39E8E59A2A20A267004AF229 /* NVMColor in Frameworks */ = {isa = PBXBuildFile; productRef = 39E8E5992A20A267004AF229 /* NVMColor */; };
@@ -52,6 +56,10 @@
 		394BC3F52A19E4E00020B18B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		394BC3F62A19E4E00020B18B /* TaskRowDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRowDisplay.swift; sourceTree = "<group>"; };
 		394BC3F72A19E4E00020B18B /* AddNewTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTask.swift; sourceTree = "<group>"; };
+		3973575B2BFBCB9600DA180C /* HistoryDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDisplay.swift; sourceTree = "<group>"; };
+		3973575E2BFBCFA000DA180C /* CompletedTaskProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTaskProvider.swift; sourceTree = "<group>"; };
+		397357622BFBCFD900DA180C /* CompletedTaskEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompletedTaskEntity.swift; path = "PreForget/Core Data/Task/CompletedTaskEntity.swift"; sourceTree = SOURCE_ROOT; };
+		397357672BFC349A00DA180C /* CompletedTaskDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTaskDetails.swift; sourceTree = "<group>"; };
 		399164C22A2049C00069BCB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39AAF9942A202C96004441F3 /* notifSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notifSound.wav; sourceTree = "<group>"; };
 		39E8E5962A2094E0004AF229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,13 +97,17 @@
 		394BC39F2A19E3860020B18B /* PreForget */ = {
 			isa = PBXGroup;
 			children = (
-				399164C22A2049C00069BCB8 /* Info.plist */,
 				394BC3A02A19E3860020B18B /* PreForgetApp.swift */,
-				39AAF9942A202C96004441F3 /* notifSound.wav */,
-				394BC3F02A19E4E00020B18B /* UserInterface */,
-				394BC3D02A19E4860020B18B /* Core Data */,
+				394BC3F32A19E4E00020B18B /* Home.swift */,
+				394BC3F52A19E4E00020B18B /* Settings.swift */,
+				394BC3F22A19E4E00020B18B /* About.swift */,
+				3973575B2BFBCB9600DA180C /* HistoryDisplay.swift */,
+				397357642BFC318A00DA180C /* Components */,
 				394BC3EB2A19E4CE0020B18B /* Notifications */,
+				394BC3D02A19E4860020B18B /* Core Data */,
 				394BC3E42A19E4BC0020B18B /* MenuBarController */,
+				399164C22A2049C00069BCB8 /* Info.plist */,
+				39AAF9942A202C96004441F3 /* notifSound.wav */,
 				39E8E5962A2094E0004AF229 /* Assets.xcassets */,
 				394BC3AE2A19E3880020B18B /* PreForget.entitlements */,
 				394BC3A62A19E3880020B18B /* Preview Content */,
@@ -114,6 +126,8 @@
 		394BC3D02A19E4860020B18B /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				394BC3D92A19E4860020B18B /* TaskModel.xcdatamodeld */,
+				3973575D2BFBCF7500DA180C /* CompletedTask */,
 				394BC3D62A19E4860020B18B /* Task */,
 			);
 			path = "Core Data";
@@ -124,7 +138,6 @@
 			children = (
 				394BC3D72A19E4860020B18B /* EditTaskViewModel.swift */,
 				394BC3D82A19E4860020B18B /* TaskProvider.swift */,
-				394BC3D92A19E4860020B18B /* TaskModel.xcdatamodeld */,
 				394BC3DB2A19E4860020B18B /* Task.swift */,
 			);
 			path = Task;
@@ -149,18 +162,25 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		394BC3F02A19E4E00020B18B /* UserInterface */ = {
+		3973575D2BFBCF7500DA180C /* CompletedTask */ = {
 			isa = PBXGroup;
 			children = (
-				394BC3F32A19E4E00020B18B /* Home.swift */,
+				397357622BFBCFD900DA180C /* CompletedTaskEntity.swift */,
+				3973575E2BFBCFA000DA180C /* CompletedTaskProvider.swift */,
+			);
+			path = CompletedTask;
+			sourceTree = "<group>";
+		};
+		397357642BFC318A00DA180C /* Components */ = {
+			isa = PBXGroup;
+			children = (
 				394BC3F72A19E4E00020B18B /* AddNewTask.swift */,
 				394BC3F62A19E4E00020B18B /* TaskRowDisplay.swift */,
 				394BC3F42A19E4E00020B18B /* TaskDetails.swift */,
-				394BC3F52A19E4E00020B18B /* Settings.swift */,
 				394BC3F12A19E4E00020B18B /* PopoverViews.swift */,
-				394BC3F22A19E4E00020B18B /* About.swift */,
+				397357672BFC349A00DA180C /* CompletedTaskDetails.swift */,
 			);
-			path = UserInterface;
+			name = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3973575C2BFBCB9600DA180C /* HistoryDisplay.swift in Sources */,
 				394BC3DF2A19E4860020B18B /* TaskProvider.swift in Sources */,
 				394BC3EE2A19E4CE0020B18B /* NotificationListView.swift in Sources */,
 				394BC3FD2A19E4E00020B18B /* TaskRowDisplay.swift in Sources */,
@@ -250,6 +271,8 @@
 				394BC3FE2A19E4E00020B18B /* AddNewTask.swift in Sources */,
 				394BC3A12A19E3860020B18B /* PreForgetApp.swift in Sources */,
 				394BC3E02A19E4860020B18B /* TaskModel.xcdatamodeld in Sources */,
+				397357632BFBCFD900DA180C /* CompletedTaskEntity.swift in Sources */,
+				3973575F2BFBCFA000DA180C /* CompletedTaskProvider.swift in Sources */,
 				394BC3FB2A19E4E00020B18B /* TaskDetails.swift in Sources */,
 				394BC3F82A19E4E00020B18B /* PopoverViews.swift in Sources */,
 				394BC3FA2A19E4E00020B18B /* Home.swift in Sources */,
@@ -257,6 +280,7 @@
 				394BC3F92A19E4E00020B18B /* About.swift in Sources */,
 				394BC3E92A19E4BC0020B18B /* EventMonitor.swift in Sources */,
 				394BC3E12A19E4860020B18B /* Task.swift in Sources */,
+				397357682BFC349A00DA180C /* CompletedTaskDetails.swift in Sources */,
 				394BC3EA2A19E4BC0020B18B /* AppDelegate.swift in Sources */,
 				394BC3DE2A19E4860020B18B /* EditTaskViewModel.swift in Sources */,
 			);
@@ -388,10 +412,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PreForget/PreForget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PreForget/Preview Content\"";
+				DEVELOPMENT_TEAM = H95PSGHW3N;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -406,8 +433,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = asj9469.PreForget;
+				PRODUCT_BUNDLE_IDENTIFIER = "info.anson-goo.PreForget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -419,10 +447,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PreForget/PreForget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PreForget/Preview Content\"";
+				DEVELOPMENT_TEAM = H95PSGHW3N;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -437,8 +468,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = asj9469.PreForget;
+				PRODUCT_BUNDLE_IDENTIFIER = "info.anson-goo.PreForget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -506,7 +538,8 @@
 				394BC3DA2A19E4860020B18B /* TaskModel.xcdatamodel */,
 			);
 			currentVersion = 394BC3DA2A19E4860020B18B /* TaskModel.xcdatamodel */;
-			path = TaskModel.xcdatamodeld;
+			name = TaskModel.xcdatamodeld;
+			path = Task/TaskModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

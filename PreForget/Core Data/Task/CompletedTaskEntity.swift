@@ -1,8 +1,8 @@
 //
-//  Task.swift
-//  preforget-priv
+//  CompletedTask.swift
+//  preforget
 //
-//  Created by Anson Goo on 4/14/23.
+//  Created by Anson Goo on 5/21/24
 //
 
 import Foundation
@@ -10,41 +10,41 @@ import CoreData
 
 final class CompletedTask: NSManagedObject, Identifiable{
     
-    @NSManaged var taskName: String
-    @NSManaged var details: String
-    @NSManaged var dueDate: Date
-    @NSManaged var reminderDate: Date
-    @NSManaged var urgency: Bool
-    @NSManaged var reminder: Bool
+    @NSManaged var taskName_c: String
+    @NSManaged var details_c: String
+    @NSManaged var dueDate_c: Date
+    @NSManaged var reminderDate_c: Date
+    @NSManaged var urgency_c: Bool
+    @NSManaged var reminder_c: Bool
     @NSManaged var completedDate: Date
     @NSManaged var completedDateTime: Date
     
-    var formattedDate: String{
+    var formattedDate_c: String{
         let df = DateFormatter()
-        df.dateFormat = "mm/dd/yyyy"
-        return df.string(from: dueDate)
+        df.dateFormat = "MM/dd/yyyy"
+        return df.string(from: dueDate_c)
     }
     
-    var formattedReminderDate: String{
+    var formattedReminderDate_c: String{
         let df = DateFormatter()
-        df.dateFormat = "mm/dd/yyyy hh:mm a"
-        return df.string(from: reminderDate)
+        df.dateFormat = "MM/dd/yyyy hh:mm a"
+        return df.string(from: reminderDate_c)
     }
     
     var formattedCompletedDate: String{
         let df = DateFormatter()
-        df.dateFormat = "mm/dd/yyyy"
+        df.dateFormat = "MM/dd/yyyy"
         return df.string(from: completedDate)
     }
     
     var formattedCompletedDateTime: String{
         let df = DateFormatter()
-        df.dateFormat = "mm/dd/yyyy hh:mm a"
+        df.dateFormat = "MM/dd/yyyy hh:mm a"
         return df.string(from: completedDateTime)
     }
     
     var isValid: Bool {
-        !taskName.isEmpty
+        !taskName_c.isEmpty
     }
     
 }

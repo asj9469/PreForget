@@ -25,35 +25,11 @@ class CompletedTaskDetailsWindowController<RootView : View>: NSWindowController{
         }
 }
 
-struct completedtask: Identifiable {
-    let id = UUID()
-    let taskName: String
-    let completionDate: Date
-    let details: String
-    let dueDate: Date
-    let formattedDate: String
-    let formattedReminderDate: String
-    let formattedCompletedDateTime: String
-    let urgency: Bool
-    let reminder: Bool
-}
-
 struct completedTaskDetailsView: View{
     @Environment(\.dismiss) var dismiss
     @State private var nameViewContentSize: CGSize = .zero
     @State private var detailsViewContentSize: CGSize = .zero
-//    let task: CompletedTask
-    let task = completedtask(
-            taskName: "Sample Task 1",
-            completionDate: Date().addingTimeInterval(-3600),
-            details: "This is a detailed description of the task.",
-            dueDate: Date().addingTimeInterval(3600),
-            formattedDate: "5/20/2024",
-            formattedReminderDate: "5/20/2024 11:59pm",
-            formattedCompletedDateTime: "5/23/2024 11:59pm",
-            urgency: true,
-            reminder: true
-        )
+    let task: CompletedTask
     
     var body: some View{
         VStack(alignment: .leading){
@@ -63,7 +39,7 @@ struct completedTaskDetailsView: View{
                     .padding(.leading, 15)
                 
                 ScrollView{
-                    Text(task.taskName)
+                    Text(task.taskName_c)
                         .lineLimit(nil)
                         .padding(.top, 4.0)
                         .overlay(GeometryReader { geo in
@@ -85,7 +61,7 @@ struct completedTaskDetailsView: View{
             HStack(alignment: VerticalAlignment.top){
                 Text("Details: ")
                     .padding(.leading, 15)
-                if(task.details.isEmpty){
+                if(task.details_c.isEmpty){
                     ScrollView{
                         Text("(no description)")
                             .lineLimit(nil)
@@ -98,7 +74,7 @@ struct completedTaskDetailsView: View{
                     .padding(.leading, 25)
                 }else{
                     ScrollView{
-                        Text(task.details)
+                        Text(task.details_c)
                             .lineLimit(nil)
                             .overlay(GeometryReader { geo in
                                 Color.clear.onAppear {
@@ -117,7 +93,7 @@ struct completedTaskDetailsView: View{
                 Text("Due: ")
                     .padding(.bottom,5)
                     .padding(.leading, 15)
-                Text(task.formattedDate)
+                Text(task.formattedDate_c)
                     .padding(.bottom,5)
                     .padding(.leading, 42)
             }
@@ -126,7 +102,7 @@ struct completedTaskDetailsView: View{
                 Text("Remind: ")
                     .padding(.bottom,5)
                     .padding(.leading, 15)
-                Text(task.formattedReminderDate)
+                Text(task.formattedReminderDate_c)
                     .padding(.leading, 21)
                     .padding(.bottom,5)
             }
@@ -141,15 +117,15 @@ struct completedTaskDetailsView: View{
             
             HStack{
                 Spacer()
-                Label("Urgent", systemImage: task.urgency == true ? "square.fill" : "square")
-                Label("Reminder", systemImage: task.reminder == true ? "square.fill" : "square")
+                Label("Urgent", systemImage: task.urgency_c == true ? "square.fill" : "square")
+                Label("Reminder", systemImage: task.reminder_c == true ? "square.fill" : "square")
                 Spacer()
             }
             
             HStack{
                 Spacer()
                 Button(action: {
-                    dismiss()
+                    NSApplication.shared.keyWindow?.close()
                 }, label: {
                     Text("Close")
                 })
@@ -161,20 +137,13 @@ struct completedTaskDetailsView: View{
         .frame(width: 300)
     }
     }
-    
-//    func deleteTask(at offsets: IndexSet){
-//        for offset in offsets{
-//            let task = completedTasks[offset]
-//            viewContext.delete(task)
-//        }
-//        try? viewContext.save()
+
+
+
+
+
+//struct completedTaskDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        completedTaskDetailsView()
 //    }
-
-
-
-
-struct completedTaskDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        completedTaskDetailsView()
-    }
-}
+//}
