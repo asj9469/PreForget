@@ -14,16 +14,14 @@ struct TaskRowView: View {
 
     @ObservedObject var task: Task
 //    let provider: TaskProvider
-    @Binding var showDetails: Bool
     @Binding var taskToEdit: Task?
     @Binding var customColor: String
     @Binding var shouldShowCompleteSuccess: Bool
     @Binding var shouldShowNotifSuccess: Bool
     @Binding var shouldHideNotifSuccess: Bool
     @Binding var imageData: Data
-    init(task: Task, showDetails: Binding<Bool>, taskToEdit: Binding<Task?>, customColor: Binding<String>, shouldShowCompleteSuccess: Binding<Bool>, shouldShowNotifSuccess: Binding<Bool>, shouldHideNotifSuccess: Binding<Bool>, imageData: Binding<Data>) {
+    init(task: Task, taskToEdit: Binding<Task?>, customColor: Binding<String>, shouldShowCompleteSuccess: Binding<Bool>, shouldShowNotifSuccess: Binding<Bool>, shouldHideNotifSuccess: Binding<Bool>, imageData: Binding<Data>) {
         self.task = task
-        self._showDetails = showDetails
         self._taskToEdit = taskToEdit
         self._customColor = customColor
         self._shouldShowCompleteSuccess = shouldShowCompleteSuccess
@@ -36,10 +34,23 @@ struct TaskRowView: View {
         ZStack(alignment: .trailing) {
             HStack{
                 Button{
-    //                viewContext.delete(task)
                     withAnimation(.spring().delay(0.25)) {
                         self.shouldShowCompleteSuccess.toggle()
                     }
+                    
+                    // migrate the task information to a history object
+                    let completedTask = CompletedTask(context: viewContext)
+                    
+                    completedTask.taskName = task.taskName
+                    completedTask.dueDate = task.dueDate
+                    completedTask.urgency = task.urgency
+                    completedTask.reminder = task.reminder
+                    completedTask.reminderDate = task.reminderDate
+                    completedTask.completedDate = Date() // setting completion date to current date
+                    completedTask.completedDateTime = Date()
+                    try? viewContext.save()
+                    
+                    // delete the task from the Task CoreDate
                     viewContext.delete(task)
                     try? viewContext.save()
                 } label:{
@@ -60,12 +71,10 @@ struct TaskRowView: View {
                     .padding(.vertical, 3)
                     .onTapGesture {
                         taskToEdit = task
-                        showDetails.toggle()
                     }
                     .contextMenu{
                         Button ("View/Edit Details") {
                             taskToEdit = task
-                            showDetails.toggle()
                         }
                     }
                 Spacer()

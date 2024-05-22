@@ -34,7 +34,7 @@ struct detailsDisplayView: View {
                         })
                     }
                 .padding(.top, 10)
-                .padding(.leading, 6)
+                .padding(.leading, 10)
                 .padding(.trailing, 10)
                 .padding(.vertical,6)
                 .frame(height: 60)
@@ -56,6 +56,7 @@ struct detailsDisplayView: View {
                                 }
                             })
                         }
+                    .padding(.leading, 4.0)
                 }else{
                     ScrollView{
                         Text(task.details)
