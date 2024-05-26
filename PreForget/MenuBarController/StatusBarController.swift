@@ -13,23 +13,49 @@ class StatusBarController{
     private var statusBar: NSStatusBar
     private var statusItem: NSStatusItem
     private(set) var popover: NSPopover
-
+    
     var menu = NSMenu()
     init(_ popover: NSPopover){
-        
         self.popover = popover
         statusBar = .init()
         statusItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
-        
-        if let button = statusItem.button{
-            button.image = NSImage(systemSymbolName: "checkmark.circle.fill", accessibilityDescription: "")
-            button.action = #selector(self.clickManager(sender:))
-            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
-            button.target = self
-        }
-        
+        DistributedNotificationCenter.default.addObserver(self, selector: #selector(updateIcon), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+
+        updateIcon()
+//        if let button = statusItem.button{
+//            let image = NSImage(systemSymbolName: "checkmark.circle.fill", accessibilityDescription: "")
+//            image?.isTemplate = true
+//            button.image = image
+//            button.action = #selector(self.clickManager(sender:))
+//            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+//            button.target = self
+//        }
     }
 
+     @objc func updateIcon(){
+            let mode = UserDefaults.standard.string(forKey: "AppleInterfaceStyle")
+            if (mode == "Dark"){
+                let icon = NSImage(systemSymbolName: "checkmark.circle.fill", accessibilityDescription: "")
+                if let button = statusItem.button {
+                    button.image = icon
+                    button.image?.isTemplate = true
+                    button.action = #selector(self.clickManager(sender:))
+                    button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+                    button.target = self
+                }
+            } else {
+                let icon = NSImage(systemSymbolName: "checkmark.circle", accessibilityDescription: "")
+                if let button = statusItem.button {
+                    button.image = icon
+                    button.image?.isTemplate = true
+                    button.action = #selector(self.clickManager(sender:))
+                    button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+                    button.target = self
+                }
+            }
+        }
+    
+    
     @objc func clickManager(sender: NSStatusItem) {
 
         let event = NSApp.currentEvent!

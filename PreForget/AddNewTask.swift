@@ -157,7 +157,7 @@ struct setTaskView: View{
                 .padding(.horizontal)
             
             ScrollView{
-                TextField("Add details that you can't afford to forget", text: $details, axis: .vertical)
+                TextField("Add details here", text: $details, axis: .vertical)
                     .padding(.horizontal)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .lineLimit(4...15)

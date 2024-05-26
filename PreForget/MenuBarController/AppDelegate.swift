@@ -36,6 +36,7 @@ class AppDelegate:  NSObject, NSApplicationDelegate {
         // Create the status bar item
         self.statusBar = StatusBarController(popover)
         self.popover.contentViewController = NSHostingController(rootView:  Home().environment(\.managedObjectContext, TaskProvider.shared.container.viewContext))
+        
     }
     func showSettingsView() {
             // Switch to .regular (icon in Dock) when Settings view is shown

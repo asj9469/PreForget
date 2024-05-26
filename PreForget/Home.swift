@@ -16,6 +16,7 @@ struct Home: View {
     let un = UNUserNotificationCenter.current()
     
     @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.colorScheme) var colorScheme
     
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.urgency, order: .reverse),
@@ -23,6 +24,14 @@ struct Home: View {
     
 //    @FetchRequest(sortDescriptors: [
 //        SortDescriptor(\.completedDateTime, order: .reverse)]) var completedTasks: FetchedResults<CompletedTask>
+    
+    var dynamicCustomColor: String {
+        if colorScheme == .dark {
+            return "717576"
+        } else {
+            return "bec5c7"
+        }
+    }
     
     @AppStorage("customColor") var customColor: String = "717576"
     @AppStorage("imageData") var imageData: Data = NSImage(imageLiteralResourceName: "cautionSign").tiffRepresentation!
@@ -174,6 +183,9 @@ struct Home: View {
                 .disabled(showAddField)
             }
         }
+        .onAppear {
+            customColor = dynamicCustomColor
+        }
         .sheet(isPresented: $showAddField){
             addNewView(vm: .init(provider: TaskProvider.shared, task: newTask), showAddField: $showAddField, imageData: $imageData){
                 withAnimation(.spring().delay(0.25)) {
@@ -249,6 +261,7 @@ struct Home: View {
         }
         
     }
+
     func deleteTask(at offsets: IndexSet){
         for offset in offsets{
             let task = tasks[offset]
