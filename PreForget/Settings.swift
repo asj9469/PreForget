@@ -10,18 +10,20 @@ import PhotosUI
 import UserNotifications
 import LaunchAtLogin
 
-class SettingsWindowController<RootView : View>: NSWindowController{
-    
-    convenience init(rootView: RootView) {
-            let hostingController = NSHostingController(rootView: rootView.frame(width: 320, height: 400))
-            let window = NSWindow(contentViewController: hostingController)
-            window.setContentSize(NSSize(width: 320, height: 400))
-            window.center()
-            self.init(window: window)
-        }
-}
+
+//class SettingsWindowController<RootView : View>: NSWindowController{
+//    
+//    convenience init(rootView: RootView) {
+//            let hostingController = NSHostingController(rootView: rootView.frame(width: 320, height: 400))
+//            let window = NSWindow(contentViewController: hostingController)
+//            window.setContentSize(NSSize(width: 320, height: 400))
+//            window.center()
+//            self.init(window: window)
+//        }
+//}
 
 struct settingsView: View{
+    
     @Environment(\.managedObjectContext) var viewContext
     let un = UNUserNotificationCenter.current()
     @Binding var customColor: String
@@ -193,7 +195,7 @@ struct settingsView: View{
                     }
                     .padding(.leading, 30)
                     Spacer()
-//                    if let imageData = imageData, let customImage = NSImage(data: imageData)
+                    
                     if let customImage = NSImage(data: imageData){
                         Spacer()
                         Image(nsImage: customImage)
@@ -228,7 +230,6 @@ struct settingsView: View{
                     }
                 }
                 
-//                if let data = imageData{
                     let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     let url = documents.appendingPathComponent("notificationIcon.png")
 
@@ -242,7 +243,6 @@ struct settingsView: View{
                         } catch {
                             print("Unable to Write Data to Disk (\(error))")
                         }
-//                }
             }
             .padding(.bottom, 10)
             

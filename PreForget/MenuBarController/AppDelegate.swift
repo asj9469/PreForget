@@ -17,6 +17,7 @@ class AppDelegate:  NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view (i.e. the content).
+        NSApp.setActivationPolicy(.accessory)
         let contentView = Home()
         
         UNUserNotificationCenter.current().delegate = self
@@ -36,7 +37,15 @@ class AppDelegate:  NSObject, NSApplicationDelegate {
         self.statusBar = StatusBarController(popover)
         self.popover.contentViewController = NSHostingController(rootView:  Home().environment(\.managedObjectContext, TaskProvider.shared.container.viewContext))
     }
-    
+    func showSettingsView() {
+            // Switch to .regular (icon in Dock) when Settings view is shown
+            NSApp.setActivationPolicy(.regular)
+        }
+
+    func closeSettingsView() {
+        // Switch back to .accessory (icon not in Dock) when Settings view is closed
+        NSApp.setActivationPolicy(.accessory)
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate{

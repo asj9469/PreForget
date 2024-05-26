@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-
-class CompletedTaskDetailsWindowController<RootView : View>: NSWindowController{
-    
-    convenience init(rootView: RootView) {
-            let hostingController = NSHostingController(rootView: rootView.frame(width: 320, height: 300))
-            let window = NSWindow(contentViewController: hostingController)
-            window.setContentSize(NSSize(width: 320, height: 300))
-            window.center()
-            self.init(window: window)
-        
-            let desiredSize = hostingController.view.intrinsicContentSize
-            window.setContentSize(desiredSize)
-            
-            window.center()
-            self.init(window: window)
-        }
-}
-
 struct completedTaskDetailsView: View{
     @Environment(\.dismiss) var dismiss
     @State private var nameViewContentSize: CGSize = .zero
@@ -39,16 +21,15 @@ struct completedTaskDetailsView: View{
                 
                 Text(task.taskName_c)
                     .lineLimit(nil)
-                    .padding(.leading, 27)
-                    .padding(.top, 5.0)
+                    .padding(.leading, 30)
                     .overlay(GeometryReader { geo in
                         Color.clear.onAppear {
                             nameViewContentSize = geo.size
                         }
                     })
             }
-            .padding(.bottom, 10)
-            .frame(minWidth: 100, maxHeight: max(100, nameViewContentSize.height))
+            .padding(.bottom, 5)
+            .frame(minWidth: 100, maxHeight: max(40, nameViewContentSize.height))
             
             HStack(alignment: VerticalAlignment.top){
                 Text("Details: ")
@@ -101,11 +82,10 @@ struct completedTaskDetailsView: View{
             
             HStack{
                 Text("Completed: ")
-                    .padding(.bottom,5)
                     .padding(.leading, 15)
                 Text(task.formattedCompletedDateTime)
-                    .padding(.bottom,5)
             }
+            .padding(.bottom, 10)
             
             HStack{
                 Spacer()
@@ -128,14 +108,4 @@ struct completedTaskDetailsView: View{
         }
         .frame(width: 300)
     }
-    }
-
-
-
-
-
-//struct completedTaskDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        completedTaskDetailsView()
-//    }
-//}
+}

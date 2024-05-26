@@ -69,6 +69,7 @@ struct TaskRowView: View {
             HStack{
                 Text(task.taskName)
                     .font(.body)
+                    .lineLimit(2)
                     .padding(.vertical, 3)
                     .onTapGesture {
                         taskToEdit = task

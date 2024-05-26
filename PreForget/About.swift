@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
-class AboutWindowController<RootView : View>: NSWindowController{
-    
-    convenience init(rootView: RootView) {
-            let hostingController = NSHostingController(rootView: rootView.frame(width: 350, height: 380))
-            let window = NSWindow(contentViewController: hostingController)
-            window.setContentSize(NSSize(width: 350, height: 380))
-            window.center()
-            self.init(window: window)
-        }
-}
+//class AboutWindowController<RootView : View>: NSWindowController{
+//    
+//    convenience init(rootView: RootView) {
+//            let hostingController = NSHostingController(rootView: rootView.frame(width: 350, height: 380))
+//            let window = NSWindow(contentViewController: hostingController)
+//            window.setContentSize(NSSize(width: 350, height: 380))
+//            window.center()
+//            self.init(window: window)
+//        }
+//}
 struct aboutView: View {
     var body: some View {
         VStack{

@@ -14,13 +14,6 @@ struct PreForgetApp: App {
     let persistenceController = TaskProvider.shared
     
     var body: some Scene {
-//        Settings {
-//            EmptyView().frame(width: 0, height: 0)
-//        }
-        WindowGroup {
-             EmptyView().frame(width: 0, height: 0)
-
-            
-        }
+        WindowGroup {}
     }
 }

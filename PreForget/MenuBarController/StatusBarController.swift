@@ -13,10 +13,7 @@ class StatusBarController{
     private var statusBar: NSStatusBar
     private var statusItem: NSStatusItem
     private(set) var popover: NSPopover
-    
-    private var localEventMonitor: EventMonitor?
-    @State var test: Bool = false
-    
+
     var menu = NSMenu()
     init(_ popover: NSPopover){
         
@@ -41,12 +38,12 @@ class StatusBarController{
             // Right button click
             let statusBarMenu = NSMenu()
             
-            let about = (NSMenuItem(title:"About this app", action:#selector(self.about(sender:)),keyEquivalent: "a"))
+            let about = (NSMenuItem(title:"About PreForget", action:#selector(self.about(sender:)),keyEquivalent: "a"))
             about.target = self
             statusBarMenu.addItem(about)
             statusBarMenu.addItem(.separator())
             
-            statusBarMenu.addItem(NSMenuItem(title:"Quit PreForget", action:#selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+            statusBarMenu.addItem(NSMenuItem(title:"Quit", action:#selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
             
                 statusItem.menu = statusBarMenu
                 statusItem.button?.performClick(nil)
@@ -65,13 +62,15 @@ class StatusBarController{
     
     @objc func about(sender: NSMenuItem){
             let aboutView = aboutView()
-            let settingsWindow = AboutWindowController(rootView: aboutView)
-            settingsWindow.window?.title = "Settings";
-            settingsWindow.showWindow(nil)
-
-        NSApp.setActivationPolicy(.regular)
-        NSApp.activate(ignoringOtherApps: true)
-        settingsWindow.window?.orderFrontRegardless()
+            let hostingController = NSHostingController(rootView: aboutView.frame(width: 350, height: 380))
+            let window = NSWindow(contentViewController: hostingController)
+            
+            window.setContentSize(NSSize(width: 350, height: 380))
+            window.center()
+            
+            window.title = "About"
+            window.makeKeyAndOrderFront(nil)
+            window.orderFrontRegardless()
     }
 }
 extension NSImage {

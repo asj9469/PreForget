@@ -24,7 +24,7 @@ struct Home: View {
 //    @FetchRequest(sortDescriptors: [
 //        SortDescriptor(\.completedDateTime, order: .reverse)]) var completedTasks: FetchedResults<CompletedTask>
     
-    @AppStorage("customColor") var customColor: String = "4280dc"
+    @AppStorage("customColor") var customColor: String = "717576"
     @AppStorage("imageData") var imageData: Data = NSImage(imageLiteralResourceName: "cautionSign").tiffRepresentation!
     @State var showAddField: Bool = false
     @State private var selectedTab = "titleView"
@@ -40,7 +40,6 @@ struct Home: View {
     @State var taskToEdit: Task?
     @State private var isMenuOpen = false
 
-
     var body: some View {
         ZStack{
             VStack{
@@ -49,13 +48,15 @@ struct Home: View {
                     HStack{
                         Button {
                             let aboutView = aboutView()
-                            let aboutWindow = AboutWindowController(rootView: aboutView)
-                            aboutWindow.window?.title = "About"
-                            aboutWindow.showWindow(nil)
+                            let hostingController = NSHostingController(rootView: aboutView.frame(width: 350, height: 380))
+                            let window = NSWindow(contentViewController: hostingController)
                             
-                            NSApp.setActivationPolicy(.regular)
-                            NSApp.activate(ignoringOtherApps: true)
-                            aboutWindow.window?.orderFrontRegardless()
+                            window.setContentSize(NSSize(width: 350, height: 380))
+                            window.center()
+                            
+                            window.title = "About this app"
+                            window.makeKeyAndOrderFront(nil)
+                            window.orderFrontRegardless()
                             
                         } label: {
                             Image(systemName: "info.circle.fill")
@@ -78,15 +79,15 @@ struct Home: View {
                             Button {
                                 isMenuOpen.toggle()
                                 let settingsView = settingsView(customColor: $customColor, customImageData: $imageData)
-                                let settingsWindow = SettingsWindowController(rootView: settingsView)
-                                settingsWindow.window?.title = "Settings";
-                                settingsWindow.showWindow(nil)
-                                settingsWindow.window = nil
+                                let hostingController = NSHostingController(rootView: settingsView.frame(width: 320, height: 400))
+                                let window = NSWindow(contentViewController: hostingController)
                                 
-                                NSApp.setActivationPolicy(.regular)
-                                NSApp.activate(ignoringOtherApps: true)
-                                settingsWindow.window?.orderFrontRegardless()
+                                window.setContentSize(NSSize(width: 320, height: 400))
+                                window.center()
                                 
+                                window.title = "Settings"
+                                window.makeKeyAndOrderFront(nil)
+                                window.orderFrontRegardless()
                             } label:{
                                 Text("Settings")
                             }
@@ -96,13 +97,14 @@ struct Home: View {
                                 isMenuOpen.toggle()
                                 let historyView = historyView()
                                     .environment(\.managedObjectContext, self.viewContext)
-                                let historyWindow = HistoryWindowController(rootView: historyView)
-                                historyWindow.window?.title = "History"
-                                historyWindow.showWindow(nil)
+                                let hostingController = NSHostingController(rootView: historyView.frame(width: 320, height: 400))
+                                let window = NSWindow(contentViewController: hostingController)
+                                window.setContentSize(NSSize(width: 320, height: 400))
+                                window.center()
                                 
-                                NSApp.setActivationPolicy(.regular)
-                                NSApp.activate(ignoringOtherApps: true)
-                                historyWindow.window?.orderFrontRegardless()
+                                window.title = "History"
+                                window.makeKeyAndOrderFront(nil)
+                                window.orderFrontRegardless()
                             } label : {
                                 Text("History")
                             }

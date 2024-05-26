@@ -8,16 +8,16 @@
 import SwiftUI
 
 
-class HistoryWindowController<RootView : View>: NSWindowController{
-    
-    convenience init(rootView: RootView) {
-            let hostingController = NSHostingController(rootView: rootView.frame(width: 320, height: 400))
-            let window = NSWindow(contentViewController: hostingController)
-            window.setContentSize(NSSize(width: 320, height: 400))
-            window.center()
-            self.init(window: window)
-        }
-}
+//class HistoryWindowController<RootView : View>: NSWindowController{
+//    
+//    convenience init(rootView: RootView) {
+//            let hostingController = NSHostingController(rootView: rootView.frame(width: 320, height: 400))
+//            let window = NSWindow(contentViewController: hostingController)
+//            window.setContentSize(NSSize(width: 320, height: 400))
+//            window.center()
+//            self.init(window: window)
+//        }
+//}
 
 struct historyView: View{
     
@@ -55,27 +55,24 @@ struct historyView: View{
                         .contentShape(Rectangle())
                         .onTapGesture {
                             let detailsView = completedTaskDetailsView(task: task)
-                            let detailsWindow = CompletedTaskDetailsWindowController(rootView: detailsView)
-                            detailsWindow.window?.title = "Task Details"
-                            detailsWindow.showWindow(nil)
-                            
-                            NSApp.setActivationPolicy(.regular)
-                            NSApp.activate(ignoringOtherApps: true)
-                            detailsWindow.window?.orderFrontRegardless()
-                            //                                    taskToDisplay = task
-                            
+                            let hostingController = NSHostingController(rootView: detailsView.frame(width: 320, height: 300))
+                            let window = NSWindow(contentViewController: hostingController)
+                            window.setContentSize(NSSize(width: 320, height: 300))
+                            window.center()
+                            window.title = "Task Details"
+                            window.makeKeyAndOrderFront(nil)
+                            window.orderFrontRegardless()
                         }
                         .contextMenu{
                             Button ("View Details") {
                                 let detailsView = completedTaskDetailsView(task: task)
-                                let detailsWindow = CompletedTaskDetailsWindowController(rootView: detailsView)
-                                detailsWindow.window?.title = "Task Details"
-                                detailsWindow.showWindow(nil)
-                                
-                                NSApp.setActivationPolicy(.regular)
-                                NSApp.activate(ignoringOtherApps: true)
-                                detailsWindow.window?.orderFrontRegardless()
-                                //                                        taskToDisplay = task
+                                let hostingController = NSHostingController(rootView: detailsView.frame(width: 320, height: 300))
+                                let window = NSWindow(contentViewController: hostingController)
+                                window.setContentSize(NSSize(width: 320, height: 300))
+                                window.center()
+                                window.title = "Task Details"
+                                window.makeKeyAndOrderFront(nil)
+                                window.orderFrontRegardless()
                             }
                         }
                         .padding(.bottom, 8)
