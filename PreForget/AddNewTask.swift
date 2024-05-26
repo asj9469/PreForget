@@ -23,7 +23,7 @@ struct addNewView: View{
     
     //title validation message
     @State var redMessage: String = ""
-    let titlePhrases = ["Don't forget the title!", "Title is required", "We need a title to save the task", "Task name is required", "No task name... what a bold choice"]
+    let titlePhrases = ["Don't forget the title!", "Title is required", "We need a title to save the task", "Task name is required", "No task name... what a bold choice!"]
     let randomTitlePhrase: String
     
     init(vm: EditTaskViewModel, showAddField: Binding<Bool>, imageData: Binding<Data>, successfulAction: @escaping () -> Void) {
@@ -188,7 +188,7 @@ struct setTaskView: View{
 
 //MARK: Details View (not used for now)
 struct detailsView: View{
-    let detailPhrases = ["Important details you want to remember?", "What is this exactly about?", "Any details to remember?","Are there any specifics?", "Anything important about this task?"]
+    let detailPhrases = ["Any Important details to remember?", "What is this exactly about?", "Any details to remember?","Are there any specifics?", "Anything important about this task?"]
     let randomDetailPhrase: String
     
     @Binding var details: String
