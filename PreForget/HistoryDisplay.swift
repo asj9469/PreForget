@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 //class HistoryWindowController<RootView : View>: NSWindowController{
 //    
 //    convenience init(rootView: RootView) {

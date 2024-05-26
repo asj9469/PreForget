@@ -25,7 +25,6 @@
 		394BC3FD2A19E4E00020B18B /* TaskRowDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BC3F62A19E4E00020B18B /* TaskRowDisplay.swift */; };
 		394BC3FE2A19E4E00020B18B /* AddNewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BC3F72A19E4E00020B18B /* AddNewTask.swift */; };
 		39708CB52BFDA15F00C60BE9 /* TaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39708CB32BFDA15F00C60BE9 /* TaskModel.xcdatamodeld */; };
-		39708CB62C02F80800C60BE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 399164C22A2049C00069BCB8 /* Info.plist */; };
 		3973575C2BFBCB9600DA180C /* HistoryDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3973575B2BFBCB9600DA180C /* HistoryDisplay.swift */; };
 		397357632BFBCFD900DA180C /* CompletedTaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397357622BFBCFD900DA180C /* CompletedTaskEntity.swift */; };
 		397357682BFC349A00DA180C /* HistoryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397357672BFC349A00DA180C /* HistoryDetails.swift */; };
@@ -247,7 +246,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39708CB62C02F80800C60BE9 /* Info.plist in Resources */,
 				398FE0C32A2051940005596A /* notifSound.wav in Resources */,
 				39E8E5972A2094E0004AF229 /* Assets.xcassets in Resources */,
 				394BC3A82A19E3880020B18B /* Preview Assets.xcassets in Resources */,
@@ -414,7 +412,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"PreForget/Preview Content\"";
 				DEVELOPMENT_TEAM = H95PSGHW3N;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -430,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "info.anson-goo.PreForget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -449,7 +447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"PreForget/Preview Content\"";
 				DEVELOPMENT_TEAM = H95PSGHW3N;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -465,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "info.anson-goo.PreForget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
